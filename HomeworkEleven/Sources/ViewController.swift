@@ -8,6 +8,7 @@ class ViewController: UIViewController {
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
@@ -18,6 +19,7 @@ class ViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 35, weight: .heavy)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -28,6 +30,7 @@ class ViewController: UIViewController {
             textField.placeholder = "Enter login or e-mail adress"
             textField.textColor = .black
             textField.translatesAutoresizingMaskIntoConstraints = false
+        
             return textField
         }()
     
@@ -38,6 +41,7 @@ class ViewController: UIViewController {
         textField.placeholder = "Password"
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
+        
         return textField
     }()
     
@@ -55,6 +59,7 @@ class ViewController: UIViewController {
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
@@ -64,8 +69,19 @@ class ViewController: UIViewController {
         button.titleLabel?.textAlignment = .right
         button.tintColor = .blue
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
+    
+    private lazy var dividerView: UIView = {
+       let divider = UIView()
+        divider.backgroundColor = .blue
+        divider.layer.cornerRadius = 20
+        divider.translatesAutoresizingMaskIntoConstraints = false
+        
+        return divider
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -91,6 +107,7 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
         view.addSubview(recoveryPassword)
+        view.addSubview(dividerView)
     }
     
     private func setupLayout() {
@@ -121,8 +138,13 @@ class ViewController: UIViewController {
             
             recoveryPassword.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
             recoveryPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            recoveryPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            recoveryPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            dividerView.topAnchor.constraint(equalTo: recoveryPassword.bottomAnchor, constant: 50),
+            dividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            dividerView.heightAnchor.constraint(equalToConstant: 1.0),
+
         ])
     }
     
