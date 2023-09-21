@@ -31,6 +31,15 @@ class ViewController: UIViewController {
             return textField
         }()
     
+    private lazy var passwordTextField: UITextField = {
+       let textField = UITextField()
+        textField.layer.cornerRadius = 20
+        textField.backgroundColor = .white
+        textField.placeholder = "Password"
+        textField.textColor = .black
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -40,6 +49,7 @@ class ViewController: UIViewController {
         setupLayout()
         
         loginTextField.setLeftIcon("person.fill", pointSize: 20)
+        passwordTextField.setLeftIcon("lock.shield.fill", pointSize: 20)
     }
 
     // MARK: - Setups
@@ -52,6 +62,7 @@ class ViewController: UIViewController {
         view.addSubview(backgroundImage)
         view.addSubview(mainTitle)
         view.addSubview(loginTextField)
+        view.addSubview(passwordTextField)
     }
     
     private func setupLayout() {
@@ -68,7 +79,12 @@ class ViewController: UIViewController {
             loginTextField.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 40),
             loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginTextField.heightAnchor.constraint(equalToConstant: 52)
+            loginTextField.heightAnchor.constraint(equalToConstant: 52),
+            
+            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 10),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 52)
         ])
     }
     
