@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         button.layer.shadowRadius = 10
         button.layer.shouldRasterize = true
         button.layer.rasterizationScale = UIScreen.main.scale
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -68,6 +69,7 @@ class ViewController: UIViewController {
         button.setTitle("Forgot your password?", for: .normal)
         button.titleLabel?.textAlignment = .right
         button.tintColor = .blue
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -95,6 +97,7 @@ class ViewController: UIViewController {
         button.layer.rasterizationScale = UIScreen.main.scale
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
             
         let imageSize = CGSize(width: 40, height: 40)
@@ -128,6 +131,7 @@ class ViewController: UIViewController {
         button.layer.rasterizationScale = UIScreen.main.scale
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         let imageSize = CGSize(width: 40, height: 40)
@@ -246,7 +250,10 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
+    @objc private func buttonPressed() {
+        
+    }
 }
 
 extension UITextField {
