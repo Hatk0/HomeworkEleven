@@ -148,6 +148,20 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        let text = "Don't have account? Sign up"
+        let attrubutedText = NSMutableAttributedString(string: text)
+        let range = (text as NSString).range(of: "Sign up")
+        attrubutedText.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+        label.attributedText = attrubutedText
+        label.font = .preferredFont(forTextStyle: .caption1)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -176,6 +190,7 @@ class ViewController: UIViewController {
         view.addSubview(dividerView)
         view.addSubview(twitterButton)
         view.addSubview(facebookButton)
+        view.addSubview(descriptionLabel)
     }
     
     private func setupLayout() {
@@ -221,7 +236,11 @@ class ViewController: UIViewController {
             facebookButton.topAnchor.constraint(equalTo: twitterButton.bottomAnchor, constant: 20),
             facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            facebookButton.heightAnchor.constraint(equalToConstant: 52)
+            facebookButton.heightAnchor.constraint(equalToConstant: 52),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: facebookButton.bottomAnchor, constant: 40),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             
         ])
     }
