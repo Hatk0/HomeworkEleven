@@ -10,6 +10,17 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    private lazy var mainTitle: UILabel = {
+       let label = UILabel()
+        label.text = "Login"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 35, weight: .heavy)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -27,6 +38,7 @@ class ViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(backgroundImage)
+        view.addSubview(mainTitle)
     }
     
     private func setupLayout() {
@@ -34,7 +46,11 @@ class ViewController: UIViewController {
             backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
+            mainTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            mainTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
