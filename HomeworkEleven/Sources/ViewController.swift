@@ -115,6 +115,39 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var facebookButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign In With Facebook", for: .normal)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .systemBlue
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageSize = CGSize(width: 40, height: 40)
+        let facebookImage = UIImageView()
+        facebookImage.image = UIImage(named: "facebook")
+        facebookImage.contentMode = .scaleAspectFit
+        facebookImage.translatesAutoresizingMaskIntoConstraints = false
+            
+        button.addSubview(facebookImage)
+            
+        NSLayoutConstraint.activate([
+            facebookImage.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
+            facebookImage.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            facebookImage.widthAnchor.constraint(equalToConstant: imageSize.width),
+            facebookImage.heightAnchor.constraint(equalToConstant: imageSize.height)
+        ])
+        
+        return button
+    }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -142,6 +175,7 @@ class ViewController: UIViewController {
         view.addSubview(recoveryPassword)
         view.addSubview(dividerView)
         view.addSubview(twitterButton)
+        view.addSubview(facebookButton)
     }
     
     private func setupLayout() {
@@ -182,7 +216,12 @@ class ViewController: UIViewController {
             twitterButton.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 20),
             twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             twitterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            twitterButton.heightAnchor.constraint(equalToConstant: 52)
+            twitterButton.heightAnchor.constraint(equalToConstant: 52),
+            
+            facebookButton.topAnchor.constraint(equalTo: twitterButton.bottomAnchor, constant: 20),
+            facebookButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            facebookButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            facebookButton.heightAnchor.constraint(equalToConstant: 52)
             
         ])
     }
