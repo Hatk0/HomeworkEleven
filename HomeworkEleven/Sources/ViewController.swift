@@ -57,6 +57,15 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var recoveryPassword: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Forgot your password?", for: .normal)
+        button.titleLabel?.textAlignment = .right
+        button.tintColor = .blue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -81,6 +90,7 @@ class ViewController: UIViewController {
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
         view.addSubview(loginButton)
+        view.addSubview(recoveryPassword)
     }
     
     private func setupLayout() {
@@ -107,7 +117,11 @@ class ViewController: UIViewController {
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginButton.heightAnchor.constraint(equalToConstant: 52)
+            loginButton.heightAnchor.constraint(equalToConstant: 52),
+            
+            recoveryPassword.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+            recoveryPassword.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            recoveryPassword.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
             
         ])
     }
