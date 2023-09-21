@@ -81,6 +81,39 @@ class ViewController: UIViewController {
         
         return divider
     }()
+
+    private lazy var twitterButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign In With Twitter", for: .normal)
+        button.layer.cornerRadius = 20
+        button.backgroundColor = .systemOrange
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = CGSize(width: 0, height: 5)
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+            
+        let imageSize = CGSize(width: 40, height: 40)
+        let twitterImage = UIImageView()
+        twitterImage.image = UIImage(named: "twitter")
+        twitterImage.contentMode = .scaleAspectFit
+        twitterImage.translatesAutoresizingMaskIntoConstraints = false
+            
+        button.addSubview(twitterImage)
+            
+        NSLayoutConstraint.activate([
+                twitterImage.leadingAnchor.constraint(equalTo: button.leadingAnchor, constant: 10),
+                twitterImage.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+                twitterImage.widthAnchor.constraint(equalToConstant: imageSize.width),
+                twitterImage.heightAnchor.constraint(equalToConstant: imageSize.height)
+        ])
+        
+        return button
+    }()
     
     // MARK: - LifeCycle
     
@@ -108,6 +141,7 @@ class ViewController: UIViewController {
         view.addSubview(loginButton)
         view.addSubview(recoveryPassword)
         view.addSubview(dividerView)
+        view.addSubview(twitterButton)
     }
     
     private func setupLayout() {
@@ -145,6 +179,11 @@ class ViewController: UIViewController {
             dividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             dividerView.heightAnchor.constraint(equalToConstant: 1.0),
 
+            twitterButton.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: 20),
+            twitterButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            twitterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            twitterButton.heightAnchor.constraint(equalToConstant: 52)
+            
         ])
     }
     
@@ -165,5 +204,3 @@ extension UITextField {
         }
     }
 }
-
-
