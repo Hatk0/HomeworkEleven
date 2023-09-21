@@ -40,6 +40,23 @@ class ViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
+    
+    private lazy var loginButton:  UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Login", for: .normal)
+        button.layer.cornerRadius = 20
+        button.tintColor = .white
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        button.backgroundColor = .systemBlue
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowOffset = .zero
+        button.layer.shadowRadius = 10
+        button.layer.shouldRasterize = true
+        button.layer.rasterizationScale = UIScreen.main.scale
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -63,6 +80,7 @@ class ViewController: UIViewController {
         view.addSubview(mainTitle)
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(loginButton)
     }
     
     private func setupLayout() {
@@ -84,7 +102,13 @@ class ViewController: UIViewController {
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 10),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 52)
+            passwordTextField.heightAnchor.constraint(equalToConstant: 52),
+            
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            loginButton.heightAnchor.constraint(equalToConstant: 52)
+            
         ])
     }
     
