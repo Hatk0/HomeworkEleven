@@ -21,6 +21,16 @@ class ViewController: UIViewController {
         return label
     }()
     
+    private lazy var loginTextField: UITextField = {
+           let textField = UITextField()
+            textField.layer.cornerRadius = 20
+            textField.backgroundColor = .white
+            textField.placeholder = "Enter login or e-mail adress"
+            textField.textColor = .black
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            return textField
+        }()
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -28,6 +38,8 @@ class ViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
+        
+        loginTextField.setLeftIcon("person.fill", pointSize: 20)
     }
 
     // MARK: - Setups
@@ -39,6 +51,7 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(backgroundImage)
         view.addSubview(mainTitle)
+        view.addSubview(loginTextField)
     }
     
     private func setupLayout() {
@@ -50,10 +63,31 @@ class ViewController: UIViewController {
             
             mainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             mainTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            mainTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            mainTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            loginTextField.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 40),
+            loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            loginTextField.heightAnchor.constraint(equalToConstant: 52)
         ])
     }
     
     // MARK: - Actions
 
 }
+
+extension UITextField {
+    func setLeftIcon(_ symbolName: String, pointSize: CGFloat, weight: UIImage.SymbolWeight = .regular, scale: UIImage.SymbolScale = .default) {
+        let configuration = UIImage.SymbolConfiguration(pointSize: pointSize, weight: weight, scale: scale)
+        if let symbolImage = UIImage(systemName: symbolName, withConfiguration: configuration) {
+            let iconView = UIImageView(frame: CGRect(x: 10, y: 5, width: 20, height: 20))
+            iconView.image = symbolImage
+            let iconContainerView: UIView = UIView(frame: CGRect(x: 20, y: 0, width: 30, height: 30))
+            iconContainerView.addSubview(iconView)
+            leftView = iconContainerView
+            leftViewMode = .always
+        }
+    }
+}
+
+
